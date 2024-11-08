@@ -58,6 +58,10 @@
     --animation-ease-in: color 150ms ease-in, background-color 150ms ease-in, border-color 150ms ease-in;
 }
 
+#root {
+    width: 100%;
+}
+
 @font-face {
     font-family: 'Plus Jakarta Sans';
     src: url('./assets/fonts/PlusJakartaSans-Bold.woff2') format('woff2'),
@@ -81,9 +85,8 @@
     box-sizing: border-box;
 }
 
-main {
+body {
     margin: 0;
-    display: flex;
     place-items: center;
     min-width: 320px;
     min-height: 100vh;
@@ -118,4 +121,11 @@ p {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
     margin: -1px;
+}
+
+button {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
 }
