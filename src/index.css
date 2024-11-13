@@ -12,7 +12,7 @@
     --color-main-purple: #635FC7;
     --color-main-purple-hover: #A8A4FF;
     --color-main-purple-opacity-10: #EAE9FA; /* custom color */
-    --color-main-purple-opacity-25: #E9E8FF; /* custom color */
+    --color-main-purple-opacity-25: #CBC8EE; /* custom color */
     --color-black: #000112;
     --color-black-opacity-25: #BFBFC3; /* custom color */
     --color-black-opacity-50: #7A7C88; /* custom color */
@@ -20,6 +20,7 @@
     --color-dark-grey: #2B2C37;
     --color-lines-dark: #3E3F4E;
     --color-medium-grey: #828FA3;
+    --color-medium-grey-opacity-25: #828FA340;
     --color-lines-light: #E4EBFA;
     --color-light-grey-bg: #F4F7FD;
     --color-white: #FFFFFF;
@@ -36,9 +37,11 @@
     --color-primary-fg: var(--color-black);
     --color-secondary-fg: var(--color-medium-grey);
     --color-accent-bg: var(--color-main-purple);
+    --color-accent-bg-disabled: var(--color-main-purple-opacity-25);
     --color-light-accent-bg: var(--color-main-purple-opacity-10);
     --color-light-accent-bg-hover: var(--color-main-purple-opacity-25);
     --color-placeholder-fg: var(--color-black-opacity-25);
+    --color-border: var(--color-medium-grey-opacity-25);
 
     /* Global Logic Colors - Dark Mode */
 
@@ -49,9 +52,11 @@
         --color-primary-fg: var(--color-white);
         --color-secondary-fg: var(--color-medium-grey);
         --color-accent-bg: var(--color-main-purple);
+        --color-accent-bg-disabled: var(--color-main-purple-opacity-25);
         --color-light-accent-bg: var(--color-white);
         --color-light-accent-bg-hover: var(--color-white);
         --color-placeholder-fg: var(--color-white-opacity-25);
+        --color-border: var(--color-medium-grey-opacity-25);
     }
 
     /* Animation */
@@ -60,6 +65,11 @@
 
 #root {
     width: 100%;
+}
+
+*::placeholder {
+    font-family: 'Plus Jakarta Sans', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    color: var(--color-placeholder-fg);
 }
 
 @font-face {
@@ -83,6 +93,10 @@
 
 *, *::before, *::after {
     box-sizing: border-box;
+}
+
+#root {
+    height: 100vh;
 }
 
 body {
@@ -110,22 +124,16 @@ p {
     padding: 0;
 }
 
-.visually-hidden {
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    border: 0;
-    padding: 0;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    margin: -1px;
-}
-
 button {
     padding: 0;
     margin: 0;
     border: none;
     background: none;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+    min-width: 0;
 }
