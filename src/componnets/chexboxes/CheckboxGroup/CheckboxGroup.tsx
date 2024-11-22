@@ -1,33 +1,30 @@
 import { FC } from 'react';
 import { CheckBoxGroupFieldset, CheckBoxGroupLegend, Ul } from './CheckboxGroup.styled.ts';
 import { CheckboxInput } from '../CheckboxInput/CheckboxInput.tsx';
-
-type Subtask = {
-  title: string;
-  isCompleted: boolean;
-};
+import { ISubtask } from '../../../global/types/types.ts';
 
 interface ICheckboxGroupProps {
-  tasks: Subtask[];
-  completedSubtasksCount: number;
-  totalSubtasksCount: number;
+  tasks: ISubtask[];
+  onChange: (subtaskId: string) => void;
 }
 
-export const CheckboxGroup: FC<ICheckboxGroupProps> = ({
-  tasks = [],
-  completedSubtasksCount = 0,
-  totalSubtasksCount = 0,
-}) => {
+export const CheckboxGroup: FC<ICheckboxGroupProps> = ({ tasks = [], onChange }) => {
   return (
     <CheckBoxGroupFieldset>
       <CheckBoxGroupLegend>
-        Subtasks ({completedSubtasksCount} of {totalSubtasksCount})
+        Subtasks ({tasks.reduce((acc, element) => acc + (element.isCompleted ? 1 : 0), 0)} of{' '}
+        {tasks.length})
       </CheckBoxGroupLegend>
       <Ul>
         {tasks &&
           tasks.map((task) => (
-            <li key={task.title}>
-              <CheckboxInput title={task.title} isCompleted={task.isCompleted} />
+            <li key={task.id}>
+              <CheckboxInput
+                title={task.title}
+                checked={task.isCompleted}
+                id={task.id}
+                onChange={onChange}
+              />
             </li>
           ))}
       </Ul>

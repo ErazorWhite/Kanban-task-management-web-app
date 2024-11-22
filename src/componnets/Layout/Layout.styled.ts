@@ -1,14 +1,9 @@
 import styled from 'styled-components';
-import { typography } from '../../global/typography.ts';
-
-export const ExpandWrapper = styled.div`
-  //display: flex;
-`;
+import { typography } from '../../global/utilities/typography.ts';
 
 export const LayoutContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  height: 100vh;
+  flex: 1;
 `;
 
 export const Main = styled.main`
@@ -17,7 +12,6 @@ export const Main = styled.main`
   flex: 1;
   width: 100%;
   min-width: 320px;
-  margin: 0 auto;
   padding: 24px 16px;
 
   background-color: var(--color-secondary-body-bg);

@@ -1,4 +1,4 @@
-import { typography } from '../../global/typography.ts';
+import { typography } from '../../global/utilities/typography.ts';
 import styled, { css } from 'styled-components';
 
 export const TextInputContainer = styled.div`
@@ -14,21 +14,43 @@ export const TextInputLabel = styled.label`
   color: var(--color-secondary-fg);
 `;
 
-const commonStyles = css`
+interface ICommonStyles {
+  isErrored: boolean;
+}
+
+const commonStyles = css<ICommonStyles>`
   ${typography.body_l};
   width: 100%;
   padding: 8px 16px;
   color: var(--color-primary-fg);
-  border: 1px solid var(--color-border);
+  background-color: var(--color-primary-body-bg);
+  border: ${({ isErrored }) =>
+    isErrored ? '1px solid var(--color-red)' : `1px solid var(--color-border)`};
   border-radius: 4px;
 `;
 
-export const StyledTextInput = styled.input`
+export const StyledTextInput = styled.input.withConfig({
+  shouldForwardProp: (prop) => prop !== 'isErrored',
+})<ICommonStyles>`
   ${commonStyles};
 `;
 
-export const StyledTextarea = styled.textarea`
+export const StyledTextarea = styled.textarea.withConfig({
+  shouldForwardProp: (prop) => prop !== 'isErrored',
+})<ICommonStyles>`
   ${commonStyles};
   resize: none;
   min-height: 120px;
+`;
+
+export const InputErrorThumb = styled.div`
+  position: relative;
+`;
+
+export const StyledError = styled.div`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 16px;
+  color: var(--color-red);
 `;

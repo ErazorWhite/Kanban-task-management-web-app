@@ -1,34 +1,76 @@
-import React, { memo } from 'react';
-import { BoardName, ChevronBox, Controls, Nav, StyledHeader } from './Header.styled.ts';
+import { FC, memo, useMemo } from 'react';
+import { BoardName, DropdownButton, Controls, Nav, StyledHeader } from './Header.styled.ts';
 import { Logo } from '../../Logo/Logo.tsx';
-
 import { Button } from '../../buttons/Button/Button.tsx';
 import { IconAddTaskMobile } from '../../icons/IconAddTaskMobile.tsx';
-import { DropdownMenuButton } from '../../buttons/DropdownMenuButton/DropdownMenuButton.tsx';
-import { buttonVariantsSize, sizes } from '../../../global/constants.ts';
+import { BASENAME, buttonVariantsSize, sizes } from '../../../global/utilities/constants.ts';
 import { IconChevronDown } from '../../icons/IconChevronDown.tsx';
-import { MobileNavigationModal } from '../../modals/MobileNavigationModal/MobileNavigationModal.tsx';
+import { IconChevronUp } from '../../icons/IconChevronUp.tsx';
+import {
+  DesktopOrTabletOnly,
+  MobileOnly,
+} from '../../shared/ResponsiveElements/ResponsiveElements.ts';
+import { useParams } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { boardsState } from '../../../state/atoms/boardsState.ts';
+import { DropdownAction } from '../../dropdown/DropdownAction/DropdownAction.tsx';
 
-const Header = () => {
-  const isNavOpen = false;
+interface IHeaderProps {
+  isDropdownOpened: boolean;
+  onDropDownOpen: () => void;
+}
+
+const Header: FC<IHeaderProps> = ({ isDropdownOpened, onDropDownOpen }) => {
+  const { boardId = '' } = useParams<{ boardId: string }>();
+  const data = useRecoilValue(boardsState);
+  const currentBoard = data?.boards?.find((b) => b.id === boardId) || null;
+
+  const dropdownActionList = useMemo(
+    () => [
+      {
+        title: 'Edit Board',
+        link: `${location.pathname.replace(BASENAME, '/')}/edit`,
+        state: { backgroundLocation: { pathname: `/board/${boardId}` } },
+      },
+      {
+        title: 'Delete Board',
+        link: `${location.pathname.replace(BASENAME, '/')}/delete`,
+        state: { backgroundLocation: { pathname: `/board/${boardId}` } },
+      },
+    ],
+    [boardId]
+  );
+
   return (
     <>
       <StyledHeader>
         <Nav>
-          <Logo />
-          <BoardName>Platform Launch</BoardName>
-          <ChevronBox>
-            <IconChevronDown />
-          </ChevronBox>
+          <Logo isTextProvided />
+          {currentBoard && <BoardName>{currentBoard?.name}</BoardName>}
+          <DropdownButton onClick={onDropDownOpen}>
+            {isDropdownOpened ? <IconChevronUp /> : <IconChevronDown />}
+          </DropdownButton>
         </Nav>
         <Controls>
-          <Button variantSize={buttonVariantsSize.HEADER} disabled>
-            <IconAddTaskMobile />
+          <Button
+            to={`/board/${encodeURIComponent(boardId)}/create-task`}
+            variantSize={buttonVariantsSize.HEADER}
+            disabled={!currentBoard}
+            state={{
+              backgroundLocation: {
+                pathname: location.pathname.replace(BASENAME, '/'),
+              },
+            }}
+            isLink
+          >
+            <MobileOnly>
+              <IconAddTaskMobile />
+            </MobileOnly>
+            <DesktopOrTabletOnly>+ Add New Task</DesktopOrTabletOnly>
           </Button>
-          <DropdownMenuButton size={sizes.SMALL} />
+          <DropdownAction actionList={dropdownActionList} size={sizes.MEDIUM} />
         </Controls>
       </StyledHeader>
-      {isNavOpen && <MobileNavigationModal />}
     </>
   );
 };

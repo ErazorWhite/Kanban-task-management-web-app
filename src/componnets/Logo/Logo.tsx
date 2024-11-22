@@ -1,5 +1,5 @@
 import { LogoMobile } from '../icons/LogoMobile.tsx';
-import { LogoBox } from './Logo.styled.ts';
+import { LogoBox, LogoText } from './Logo.styled.ts';
 import { FC } from 'react';
 
 interface ILogoProps {
@@ -8,9 +8,9 @@ interface ILogoProps {
 
 export const Logo: FC<ILogoProps> = ({ isTextProvided = false }) => {
   return (
-    <LogoBox href="/">
+    <LogoBox to={`/`}>
       <LogoMobile />
-      {isTextProvided && 'kanban'}
+      {isTextProvided && <LogoText>kanban</LogoText>}
     </LogoBox>
   );
 };

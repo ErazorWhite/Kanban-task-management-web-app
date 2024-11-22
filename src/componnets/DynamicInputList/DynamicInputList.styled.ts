@@ -24,3 +24,7 @@ export const DynamicInputContainer = styled.div`
     margin-top: 12px;
   }
 `;
+
+export const DynamicInputError = styled.div`
+  color: var(--color-red);
+`;

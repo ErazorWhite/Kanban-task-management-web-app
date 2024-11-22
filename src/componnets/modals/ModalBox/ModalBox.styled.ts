@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { typography } from '../../../global/typography.ts';
+import { typography } from '../../../global/utilities/typography.ts';
 
 export const ModalBoxContainer = styled.div`
   width: 100%;
@@ -12,6 +12,7 @@ export const ModalBoxContainer = styled.div`
 
 export const ModalBoxHeadingWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   margin: 0 0 24px 0;
 `;
 
@@ -20,7 +21,7 @@ interface IModalBoxTitleProps {
 }
 
 export const ModalBoxTitle = styled.h4.withConfig({
-  shouldForwardProp: (prop) => prop != 'isDestructive',
+  shouldForwardProp: (prop) => prop !== 'isDestructive',
 })<IModalBoxTitleProps>`
   ${typography.heading_l};
   color: ${({ isDestructive }) => (isDestructive ? `var(--color-red)` : `var(--color-primary-fg)`)};

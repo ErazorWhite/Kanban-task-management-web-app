@@ -4,4 +4,5 @@ export const DropdownMenuButtonBox = styled.button`
   display: flex;
   align-items: center;
   padding: 24px 16px;
+  cursor: pointer;
 `;

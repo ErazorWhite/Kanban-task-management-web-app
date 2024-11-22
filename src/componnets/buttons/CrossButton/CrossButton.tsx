@@ -8,7 +8,7 @@ interface ICrossButtonProps {
 
 export const CrossButton: FC<ICrossButtonProps> = ({ onClick }) => {
   return (
-    <StyledCrossButton onClick={onClick}>
+    <StyledCrossButton onClick={onClick} type="button">
       <IconCross />
     </StyledCrossButton>
   );

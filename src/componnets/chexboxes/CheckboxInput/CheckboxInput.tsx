@@ -4,18 +4,24 @@ import { IconCheck } from '../../icons/IconCheck.tsx';
 
 interface ICheckboxInputProps {
   title: string;
-  isCompleted: boolean;
+  checked: boolean;
+  onChange: (id: string) => void;
+  id: string;
 }
 
-// TODO
-// Complete logic part about onChange, id, htmlFor, etc...
-
-export const CheckboxInput: FC<ICheckboxInputProps> = ({ title, isCompleted }) => {
+export const CheckboxInput: FC<ICheckboxInputProps> = ({ title, checked, id, onChange }) => {
   return (
     <>
-      <HiddenInput id="" type="checkbox" checked={isCompleted} />
-      <CheckboxLabel htmlFor="">
-        <Checkbox>{isCompleted && <IconCheck />}</Checkbox>
+      <HiddenInput
+        id={id}
+        type="checkbox"
+        checked={checked}
+        onChange={() => {
+          onChange(id);
+        }}
+      />
+      <CheckboxLabel htmlFor={id}>
+        <Checkbox>{checked && <IconCheck />}</Checkbox>
         {title}
       </CheckboxLabel>
     </>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { typography } from '../../../global/typography.ts';
-import { visuallyHidden } from '../../../global/mixins.ts';
+import { typography } from '../../../global/utilities/typography.ts';
+import { visuallyHidden } from '../../../global/utilities/mixins.ts';
 
 export const CheckboxLabel = styled.label`
   ${typography.body_m};
@@ -11,6 +11,7 @@ export const CheckboxLabel = styled.label`
   border-radius: 4px;
   color: var(--color-primary-fg);
   background-color: var(--color-secondary-body-bg);
+  user-select: none;
 `;
 
 export const Checkbox = styled.div`

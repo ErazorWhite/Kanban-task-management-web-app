@@ -1,6 +1,7 @@
-import styled from 'styled-components';
-import { typography } from '../../../global/typography.ts';
-import { buttonVariantsColor, buttonVariantsSize } from '../../../global/constants.ts';
+import styled, { css } from 'styled-components';
+import { typography } from '../../../global/utilities/typography.ts';
+import { buttonVariantsColor, buttonVariantsSize } from '../../../global/utilities/constants.ts';
+import { Link } from 'react-router-dom';
 
 const variantSizes = {
   [buttonVariantsSize.HEADER]: {
@@ -48,17 +49,18 @@ interface IStyledButton {
   disabled?: boolean;
 }
 
-export const StyledButton = styled.button.withConfig({
-  shouldForwardProp: (prop) => !['variantColor', 'variantSize'].includes(prop),
-})<IStyledButton>`
+export const BaseButtonStyles = css<IStyledButton>`
   ${typography.heading_m}
   display: flex;
   align-items: center;
   align-self: center;
   justify-content: center;
-  background-color: ${({ disabled, variantColor = buttonVariantsColor.PRIMARY }) =>
-    disabled ? `var(--color-accent-bg-disabled)` : variantColors[variantColor].backgroundColor};
-  color: ${({ variantColor = buttonVariantsColor.PRIMARY }) => variantColors[variantColor].color};
+  background-color: ${({ disabled = false, variantColor = buttonVariantsColor.PRIMARY }) =>
+    disabled ? 'var(--color-accent-bg-disabled)' : variantColors[variantColor].backgroundColor};
+  color: ${({ disabled = false, variantColor = buttonVariantsColor.PRIMARY }) =>
+    disabled ? 'var(--color-accent-fg-disabled)' : variantColors[variantColor].color};
+  fill: ${({ disabled = false, variantColor = buttonVariantsColor.PRIMARY }) =>
+    disabled ? 'var(--color-accent-fg-disabled)' : variantColors[variantColor].color};
   padding: ${({ variantSize = buttonVariantsSize.MAIN }) => variantSizes[variantSize].padding};
   font-size: ${({ variantSize = buttonVariantsSize.MAIN }) => variantSizes[variantSize].fontSize};
   line-height: ${({ variantSize = buttonVariantsSize.MAIN }) =>
@@ -68,10 +70,24 @@ export const StyledButton = styled.button.withConfig({
   min-height: 32px;
   width: ${({ variantSize = buttonVariantsSize.MAIN }) => variantSizes[variantSize].width};
   min-width: 48px;
+  text-decoration: none;
   transition: var(--animation-ease-in);
+  cursor: pointer;
   &:hover,
   &:focus {
     background-color: ${({ disabled, variantColor = buttonVariantsColor.PRIMARY }) =>
       !disabled && variantColors[variantColor].hoverBackgroundColor};
   }
+`;
+
+export const StyledButton = styled.button.withConfig({
+  shouldForwardProp: (prop) => !['variantColor', 'variantSize'].includes(prop),
+})<IStyledButton>`
+  ${BaseButtonStyles}
+`;
+
+export const ButtonLink = styled(Link).withConfig({
+  shouldForwardProp: (prop) => !['variantColor', 'variantSize'].includes(prop),
+})<IStyledButton>`
+  ${BaseButtonStyles}
 `;

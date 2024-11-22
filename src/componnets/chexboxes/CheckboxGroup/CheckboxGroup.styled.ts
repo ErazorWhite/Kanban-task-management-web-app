@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { typography } from '../../../global/typography.ts';
+import { typography } from '../../../global/utilities/typography.ts';
 
 export const CheckBoxGroupFieldset = styled.fieldset`
   ${typography.body_l}

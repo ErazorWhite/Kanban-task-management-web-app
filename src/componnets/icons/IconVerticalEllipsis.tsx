@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { sizes } from '../../global/constants.ts';
+import { sizes } from '../../global/utilities/constants.ts';
 
 interface IIconVerticalEllipsisProps {
   size?: sizes;

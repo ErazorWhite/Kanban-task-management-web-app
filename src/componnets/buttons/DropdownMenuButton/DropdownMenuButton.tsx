@@ -1,7 +1,7 @@
 import { IconVerticalEllipsis } from '../../icons/IconVerticalEllipsis.tsx';
 import { DropdownMenuButtonBox } from './DropdownMenuButton.styled.ts';
 import { FC } from 'react';
-import { sizes } from '../../../global/constants.ts';
+import { sizes } from '../../../global/utilities/constants.ts';
 
 interface IDropdownMenuButtonProps {
   onClick?: () => void;
