@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { boardsState } from '../../../state/atoms/boardsState.ts';
@@ -18,11 +18,7 @@ export const NoBoardsPage = () => {
     }
   }, [data, location.pathname]);
   return firstBoard ? (
-    <EmptyBoard
-      message="We found at least one board. Would you like to move to it?"
-      buttonSign="Go to first board"
-      to={firstBoard}
-    />
+    <Navigate to={firstBoard} />
   ) : (
     <EmptyBoard
       message="There are no boards. Please create a new one."
