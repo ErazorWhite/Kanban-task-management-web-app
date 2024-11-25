@@ -69,7 +69,7 @@
     }
 
     /* Animation */
-    --animation-ease-in: color 150ms ease-in, background-color 150ms ease-in, border-color 150ms ease-in, fill 150ms ease-in;
+    --animation-ease-in: color 150ms ease-in, background-color 150ms ease-in, border-color 150ms ease-in, fill 150ms ease-in, box-shadow 150ms ease-in;
 }
 
 #root {
