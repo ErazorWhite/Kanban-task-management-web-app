@@ -1,68 +1,159 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    font-family: 'Plus Jakarta Sans', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    /* Colors */
+    --color-add-new-column-light: linear-gradient(180deg, #e9effa 0%, rgba(233, 239, 250, 0.5) 100%);
+    --color-add-new-column-dark: linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.125) 100%);
+
+
+    --color-grey-opacity: #AFB6B9;
+    --color-main-purple: #635FC7;
+    --color-main-purple-hover: #A8A4FF;
+    --color-main-purple-opacity-10: #EAE9FA; /* custom color */
+    --color-main-purple-opacity-light-25: #CBC8EE; /* custom color */
+    --color-main-purple-opacity-dark-25: #39395B; /* custom color */
+    --color-black: #000112;
+    --color-black-opacity-25: #BFBFC3; /* custom color */
+    --color-black-opacity-50: #7A7C88; /* custom color */
+    --color-very-dark-grey-bg: #20212C;
+    --color-dark-grey: #2B2C37;
+    --color-lines-dark: #3E3F4E;
+    --color-medium-grey: #828FA3;
+    --color-medium-grey-opacity-25: #828FA340;
+    --color-lines-light: #E4EBFA;
+    --color-light-grey-bg: #F4F7FD;
+    --color-white: #FFFFFF;
+    --color-white-opacity-25: #C5C5CD; /* custom color */
+    --color-white-opacity-50: #909096; /* custom color */
+    --color-red: #EA5555;
+    --color-red-hover: #FF9898;
+
+    /* Global Logic Colors - Light Mode */
+    --color-add-new-column: var(--color-add-new-column-light);
+    --color-primary-body-bg: var(--color-white);
+    --color-primary-body-bg-checked: var(--color-black-opacity-50);
+    --color-secondary-body-bg: var(--color-light-grey-bg);
+    --color-primary-fg: var(--color-black);
+    --color-secondary-fg: var(--color-medium-grey);
+    --color-accent-bg: var(--color-main-purple);
+    --color-accent-fg-disabled: var(--color-light-grey-bg);
+    --color-accent-bg-disabled: var(--color-main-purple-opacity-light-25);
+    --color-light-accent-bg: var(--color-main-purple-opacity-10);
+    --color-light-accent-bg-hover: var(--color-main-purple-opacity-light-25);
+    --color-placeholder-fg: var(--color-black-opacity-25);
+    --color-border: var(--color-medium-grey-opacity-25);
+
+    /* Global Logic Colors - Dark Mode */
+
+    .dark-theme {
+        --color-add-new-column: var(--color-add-new-column-dark);
+        --color-primary-body-bg: var(--color-dark-grey);
+        --color-primary-body-bg-checked: var(--color-white-opacity-50);
+        --color-secondary-body-bg: var(--color-very-dark-grey-bg);
+        --color-primary-fg: var(--color-white);
+        --color-secondary-fg: var(--color-medium-grey);
+        --color-accent-bg: var(--color-main-purple);
+        --color-accent-fg-disabled: var(--color-white-opacity-50);
+        --color-accent-bg-disabled: var(--color-main-purple-opacity-dark-25);
+        --color-light-accent-bg: var(--color-white);
+        --color-light-accent-bg-hover: var(--color-white);
+        --color-placeholder-fg: var(--color-white-opacity-25);
+        --color-border: var(--color-medium-grey-opacity-25);
+    }
+
+    /* Animation */
+    --animation-ease-in: color 150ms ease-in, background-color 150ms ease-in, border-color 150ms ease-in, fill 150ms ease-in, box-shadow 150ms ease-in;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+#root {
+    width: 100%;
 }
-a:hover {
-  color: #535bf2;
+
+*::placeholder {
+    font-family: 'Plus Jakarta Sans', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    color: var(--color-placeholder-fg);
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('./assets/fonts/PlusJakartaSans-Bold.woff2') format('woff2'),
+    url('./assets/fonts/PlusJakartaSans-Bold.woff') format('woff'),
+    url('./assets/fonts/PlusJakartaSans-Bold.ttf') format('ttf');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('./assets/fonts/PlusJakartaSans-Medium.woff2') format('woff2'),
+    url('./assets/fonts/PlusJakartaSans-Medium.woff') format("woff"),
+    url('./assets/fonts/PlusJakartaSans-Medium.ttf') format('ttf');
+    font-weight: 500;
+    font-style: normal;
+}
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, #root {
+    height: 100vh;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    margin: 0;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    max-height: 100vh;
+    background-color: var(--color-secondary-body-bg);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+    min-width: 0;
 }
