@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MOBILE_BP, TABLET_BP } from '../../global/utilities/breakpoints.ts';
+import { DESKTOP_BP, MOBILE_BP, TABLET_BP } from '../../global/utilities/breakpoints.ts';
 
 export const ToggleMainBlock = styled.button`
   display: flex;
@@ -18,6 +18,9 @@ export const ToggleMainBlock = styled.button`
   }
   @media screen and ${TABLET_BP} {
     margin: 0 0 16px 0;
+  }
+  @media screen and ${DESKTOP_BP} {
+    margin: 0 0 8px 0;
   }
 `;
 

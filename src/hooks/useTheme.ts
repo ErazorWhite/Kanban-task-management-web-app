@@ -15,7 +15,7 @@ export const useTheme = (): UseThemeReturnType => {
   useEffect(() => {
     const currentTheme = Object.values(Theme).includes(currentStoredTheme)
       ? currentStoredTheme
-      : Theme.Light;
+      : Theme.Dark;
 
     const bodyClassList = document.body.classList;
     localStorage.setItem('theme', currentTheme);

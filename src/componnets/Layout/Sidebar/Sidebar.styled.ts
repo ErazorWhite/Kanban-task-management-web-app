@@ -52,12 +52,13 @@ export const MediaFlexWrapper = styled.div`
 `;
 
 export const NavigationTitle = styled.h2`
-  ${typography.heading_m};
+  ${typography.heading_s};
   letter-spacing: 2px;
   padding: 0 0 0 24px;
   margin: 0 0 19px 0;
 
   @media screen and ${TABLET_BP} {
+    ${typography.heading_m};
     padding: 31px 0 0 24px;
   }
 `;

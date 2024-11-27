@@ -11,7 +11,9 @@ import { Theme, useTheme } from '../../hooks/useTheme.ts';
 
 export const ThemeSwitcher: FC = () => {
   const [currentStoredTheme, setCurrentStoredTheme] = useTheme();
-  const [isChecked, setIsChecked] = useState(currentStoredTheme === Theme.Dark);
+  const [isChecked, setIsChecked] = useState(
+    currentStoredTheme ? currentStoredTheme === Theme.Dark : true
+  ); // make dark as default
 
   const handleToggle = useCallback(() => {
     setCurrentStoredTheme(currentStoredTheme === Theme.Light ? Theme.Dark : Theme.Light);

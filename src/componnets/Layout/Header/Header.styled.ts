@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { typography } from '../../../global/utilities/typography.ts';
-import { TABLET_BP } from '../../../global/utilities/breakpoints.ts';
+import { DESKTOP_BP, TABLET_BP } from '../../../global/utilities/breakpoints.ts';
 
 export const StyledHeader = styled.header`
   position: relative;
@@ -12,6 +12,9 @@ export const StyledHeader = styled.header`
   background-color: var(--color-primary-body-bg);
   color: var(--color-primary-fg);
   min-height: 64px;
+  @media screen and ${DESKTOP_BP} {
+    min-height: 90px;
+  }
 `;
 
 export const Nav = styled.nav`
@@ -28,7 +31,11 @@ export const BoardName = styled.span`
   place-content: center;
 
   @media screen and ${TABLET_BP} {
+    font-size: 20px;
     margin: 0 0 0 24px;
+  }
+  @media screen and ${DESKTOP_BP} {
+    ${typography.heading_xl};
   }
 `;
 

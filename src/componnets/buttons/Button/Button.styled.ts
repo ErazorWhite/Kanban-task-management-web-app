@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import { typography } from '../../../global/utilities/typography.ts';
 import { buttonVariantsColor, buttonVariantsSize } from '../../../global/utilities/constants.ts';
 import { Link } from 'react-router-dom';
+import { TABLET_BP } from '../../../global/utilities/breakpoints.ts';
 
 const variantSizes = {
   [buttonVariantsSize.HEADER]: {
@@ -13,12 +14,14 @@ const variantSizes = {
   },
   [buttonVariantsSize.MAIN]: {
     padding: '15px 18px',
+    paddingTablet: '15px 18px',
     fontSize: '15px',
     lineHeight: 'auto',
     width: 'auto',
   },
   [buttonVariantsSize.MODAL]: {
     padding: '9px 0',
+    paddingTablet: '9px 0',
     fontSize: '13px',
     lineHeight: 1.8,
     width: '100%',
@@ -73,10 +76,16 @@ export const BaseButtonStyles = css<IStyledButton>`
   text-decoration: none;
   transition: var(--animation-ease-in);
   cursor: pointer;
+
   &:hover,
   &:focus {
     background-color: ${({ disabled, variantColor = buttonVariantsColor.PRIMARY }) =>
       !disabled && variantColors[variantColor].hoverBackgroundColor};
+  }
+
+  @media screen and ${TABLET_BP} {
+    padding: ${({ variantSize = buttonVariantsSize.MAIN }) =>
+      variantSizes[variantSize].paddingTablet};
   }
 `;
 

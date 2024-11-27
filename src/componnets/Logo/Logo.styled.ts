@@ -15,6 +15,7 @@ export const LogoBox = styled(Link)`
   @media screen and ${TABLET_BP} {
     width: 260px;
     border-right: 1px solid var(--color-border);
+    padding: 30px 34px;
   }
 `;
 
